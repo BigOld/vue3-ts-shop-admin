@@ -1,7 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
 const request = axios.create({
-  baseURL: 'https://shop.fed.lagou.com/api/admin'
+  // baseURL: import.meta.env.VITE_API_BASE_URL as string
+  // baseURL: '/admin'
 })
 
 // request 不支持泛型
