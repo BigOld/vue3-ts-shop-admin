@@ -80,7 +80,7 @@ import { useRouter, useRoute } from 'vue-router'
 
 const store = useStore()
 const router = useRouter()
-const route = useRoute()
+const route = useRoute() // 获取当前路由对象
 const form = ref<IElForm | null>(null)
 const captchaSrc = ref('')
 const user = reactive({
@@ -122,10 +122,15 @@ const handleSubmit = async () => {
   const data = await login(user).finally(() => { // 登录失败与否都关掉loading
     loading.value = false
   })
-  store.commit('setUser', data.user_info)
-  router.replace({
-    name: 'home'
+  store.commit('setUser', {
+    ...data.user_info,
+    token: data.token
   })
+  let redirect = route.query.redirect || '/'
+  if (typeof redirect !== 'string') {
+    redirect = '/'
+  }
+  router.replace(redirect)
 }
 
 </script>

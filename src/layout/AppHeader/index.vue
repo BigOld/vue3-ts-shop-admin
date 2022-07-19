@@ -15,6 +15,7 @@
 import ToggleSidebar from './ToggleSidebar.vue'
 import Breadcrumb from './Breadcrumb.vue'
 import FullScreen from './FullScreen.vue'
+import UserInfo from './UserInfo.vue'
 
 </script>
 
