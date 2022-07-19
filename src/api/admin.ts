@@ -1,10 +1,10 @@
-import { Admin, AdminPostData, IListParams } from '@/api/types/admin'
-import { IFormData } from '@/api/types/form'
 import request from '@/utils/request'
+import { IListParams, Admin, AdminPostData } from './types/admin'
+import { IFormData } from './types/form'
 
 export const getAdmins = (params: IListParams) => {
   return request<{
-    count : number,
+    count: number
     list: Admin[]
   }>({
     method: 'GET',
@@ -21,7 +21,7 @@ export const createAdmin = (data: AdminPostData) => {
   })
 }
 
-export const editAdmin = (id: number, data: AdminPostData) => {
+export const updateAdmin = (id: number, data: AdminPostData) => {
   return request({
     method: 'PUT',
     url: `/setting/admin/${id}`,
@@ -65,6 +65,13 @@ export const getAdmin = (id: number) => {
     data.rules.forEach(item => {
       obj[item.field] = item.value
     })
-    return obj as AdminPostData
+    return obj as {
+      account: string
+      pwd: string
+      conf_pwd: string
+      real_name: string
+      roles: string[]
+      status: 0 | 1
+    }
   })
 }
