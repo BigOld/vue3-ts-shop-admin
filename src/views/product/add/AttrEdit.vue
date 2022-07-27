@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <el-form
     label-position="left"
@@ -171,6 +172,7 @@ const showInput = async (item: AttrRuleValue) => {
 const handleAddAttr = async () => {
   const valid = await form.value?.validate()
   if (!valid) return
+  // eslint-disable-next-line vue/no-mutating-props
   props.modelValue.push({
     value: attrForm.value.value,
     detail: attrForm.value.detail,
